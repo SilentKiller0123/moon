@@ -1,0 +1,2028 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Mera Chand • Happy Birthday Meri Jaan</title>
+
+  <!-- Typography: Cormorant Garamond, Plus Jakarta Sans, Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Three.js CDN for Cute 3D Moon Cake -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Tailwind Theme Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            midnight: '#060210',
+            deepCosmos: '#0d041e',
+            lunar: {
+              silver: '#e2e8f0',
+              pearl: '#f8fafc',
+              glow: 'rgba(224, 195, 252, 0.45)',
+              lavender: '#d8b4fe'
+            },
+            solar: {
+              gold: '#ffd166',
+              amber: '#f59e0b',
+              champagne: '#fef08a',
+              glow: 'rgba(255, 209, 102, 0.45)',
+              rose: '#f43f5e'
+            },
+            loveRed: '#e11d48',
+            twilight: '#1c1033',
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            handwritten: ['"Caveat"', 'cursive'],
+          },
+          animation: {
+            'float-slow': 'floatHeart 5s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
+            'flame-flicker': 'flame 1.3s ease-in-out infinite alternate',
+            'smoke-rise': 'smoke 2s ease-out forwards',
+            'spin-slow': 'spin 35s linear infinite',
+            'balloon-bounce': 'balloonBounce 6s ease-in-out infinite alternate',
+            'heart-beat': 'heartBeat 1.8s ease-in-out infinite',
+          },
+          keyframes: {
+            floatHeart: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-14px) rotate(3deg)' },
+            },
+            heartBeat: {
+              '0%, 100%': { transform: 'scale(1)' },
+              '14%': { transform: 'scale(1.15)' },
+              '28%': { transform: 'scale(1)' },
+              '42%': { transform: 'scale(1.18)' },
+              '70%': { transform: 'scale(1)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+              '50%': { opacity: '0.85', transform: 'scale(1.06)' },
+            },
+            flame: {
+              '0%': { transform: 'scale(1) skewX(-2deg)' },
+              '50%': { transform: 'scale(1.1, 0.95) skewX(2deg)' },
+              '100%': { transform: 'scale(0.96, 1.05) skewX(-1.5deg)' },
+            },
+            smoke: {
+              '0%': { opacity: '0.9', transform: 'translateY(0) scale(1)' },
+              '100%': { opacity: '0', transform: 'translateY(-85px) scale(2.5)' },
+            },
+            balloonBounce: {
+              '0%': { transform: 'translateY(0px) rotate(-2deg)' },
+              '100%': { transform: 'translateY(-24px) rotate(3deg)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #060210;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3b1d54;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ffd166;
+    }
+
+    /* 3D Flip Card Styles */
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .transform-style-preserve-3d {
+      transform-style: preserve-3d;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+
+    /* Glassmorphic Panes */
+    .celestial-glass {
+      background: rgba(18, 9, 34, 0.68);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .celestial-glass-solar {
+      background: rgba(43, 17, 18, 0.65);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 209, 102, 0.35);
+    }
+    .celestial-glass-lunar {
+      background: rgba(15, 20, 48, 0.65);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(216, 180, 254, 0.3);
+    }
+
+    /* Shimmer Text */
+    .shimmer-gold {
+      background: linear-gradient(90deg, #fef08a 0%, #ffffff 35%, #ffd166 70%, #f43f5e 100%);
+      background-size: 250% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      animation: shimmerText 5s linear infinite;
+    }
+
+    @keyframes shimmerText {
+      to {
+        background-position: 250% center;
+      }
+    }
+
+    /* Page View Transitions */
+    .page-view {
+      display: none;
+      opacity: 0;
+      transform: scale(0.985) translateY(12px);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .page-view.active-page {
+      display: block;
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    .nav-btn.active-nav {
+      background: rgba(255, 209, 102, 0.18);
+      border-color: rgba(255, 209, 102, 0.6);
+      color: #ffd166;
+      box-shadow: 0 0 16px rgba(255, 209, 102, 0.35);
+    }
+
+    #gesture-canvas {
+      touch-action: none;
+      cursor: crosshair;
+    }
+
+    /* Floating Heart Spawner */
+    .floating-heart-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 50;
+      animation: floatUpFade 2.4s ease-out forwards;
+    }
+
+    @keyframes floatUpFade {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(0.6) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-80px) scale(1.1) rotate(15deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-160px) scale(1.4) rotate(-20deg);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-[#060210] text-slate-100 font-sans antialiased overflow-x-hidden min-h-screen selection:bg-rose-500/30 selection:text-solar-champagne">
+
+  <!-- Ambient Interactive Background Canvas -->
+  <canvas id="celestial-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- Sky Glow Orbs -->
+  <div id="orb-sun" class="fixed top-[-10%] right-[-5%] w-[48vw] h-[48vw] max-w-[620px] max-h-[620px] rounded-full bg-rose-600/20 mix-blend-screen filter blur-[120px] animate-pulse-glow pointer-events-none z-0"></div>
+  <div id="orb-moon" class="fixed bottom-[-10%] left-[-5%] w-[45vw] h-[45vw] max-w-[580px] max-h-[580px] rounded-full bg-indigo-600/20 mix-blend-screen filter blur-[130px] animate-float-slow pointer-events-none z-0"></div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="fixed top-0 left-0 right-0 z-40 px-3 sm:px-8 py-3 flex items-center justify-between border-b border-white/10 celestial-glass">
+    <!-- Brand Sigil -->
+    <button onclick="navigateToPage('gateway')" class="flex items-center space-x-2.5 text-left group">
+      <div class="relative w-8 h-8 rounded-full border border-solar-gold/50 flex items-center justify-center overflow-hidden bg-gradient-to-tr from-rose-500/20 to-amber-400/20 shadow-[0_0_15px_rgba(255,209,102,0.4)] group-hover:scale-105 transition-transform">
+        <i data-lucide="moon" class="w-4 h-4 text-solar-gold"></i>
+        <i data-lucide="heart" class="w-2.5 h-2.5 text-rose-400 fill-rose-400 absolute -top-0.5 -right-0.5 animate-pulse"></i>
+      </div>
+      <div>
+        <span class="block font-serif text-sm sm:text-base tracking-wide text-white font-medium group-hover:text-solar-gold transition-colors">
+          Sun & Mera Chand
+        </span>
+        <span class="block text-[8px] sm:text-[9px] uppercase tracking-[0.25em] text-rose-300">
+          Happy Birthday Jaan
+        </span>
+      </div>
+    </button>
+
+    <!-- SPA Navigation Links -->
+    <nav class="hidden lg:flex items-center space-x-1 p-1 rounded-full bg-black/40 border border-white/10 text-xs">
+      <button onclick="navigateToPage('gateway')" class="nav-btn px-3 py-1.5 rounded-full transition-all duration-300 text-slate-300 hover:text-white" data-page="gateway">
+        <span class="flex items-center space-x-1.5">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-solar-gold"></i>
+          <span>Pehla Noor</span>
+        </span>
+      </button>
+
+      <button onclick="navigateToPage('ceremony')" class="nav-btn px-3 py-1.5 rounded-full transition-all duration-300 text-slate-300 hover:text-solar-gold" data-page="ceremony">
+        <span class="flex items-center space-x-1.5">
+          <i data-lucide="cake" class="w-3.5 h-3.5 text-rose-400"></i>
+          <span>Cute Moon Cake</span>
+        </span>
+      </button>
+
+      <button onclick="navigateToPage('shayari')" class="nav-btn px-3 py-1.5 rounded-full transition-all duration-300 text-slate-300 hover:text-lunar-lavender" data-page="shayari">
+        <span class="flex items-center space-x-1.5">
+          <i data-lucide="feather" class="w-3.5 h-3.5 text-purple-300"></i>
+          <span>Dil Ki Shayari</span>
+        </span>
+      </button>
+
+      <button onclick="navigateToPage('lunar')" class="nav-btn px-3 py-1.5 rounded-full transition-all duration-300 text-slate-300 hover:text-lunar-silver" data-page="lunar">
+        <span class="flex items-center space-x-1.5">
+          <i data-lucide="moon" class="w-3.5 h-3.5 text-indigo-300"></i>
+          <span>Chand Ke Raaz</span>
+        </span>
+      </button>
+
+      <button onclick="navigateToPage('solar')" class="nav-btn px-3 py-1.5 rounded-full transition-all duration-300 text-slate-300 hover:text-solar-gold" data-page="solar">
+        <span class="flex items-center space-x-1.5">
+          <i data-lucide="sun" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>Tere Sath vs Tere Bina</span>
+        </span>
+      </button>
+
+      <button onclick="navigateToPage('wish')" class="nav-btn px-3 py-1.5 rounded-full transition-all duration-300 text-slate-300 hover:text-white" data-page="wish">
+        <span class="flex items-center space-x-1.5">
+          <i data-lucide="flame" class="w-3.5 h-3.5 text-rose-400"></i>
+          <span>Dua Ki Flame</span>
+        </span>
+      </button>
+
+      <button onclick="navigateToPage('affirmations')" class="nav-btn px-3 py-1.5 rounded-full transition-all duration-300 text-slate-300 hover:text-white" data-page="affirmations">
+        <span class="flex items-center space-x-1.5">
+          <i data-lucide="heart" class="w-3.5 h-3.5 text-rose-400"></i>
+          <span>Jab Yaad Aaye</span>
+        </span>
+      </button>
+    </nav>
+
+    <!-- Top Right Action Controls: Melody & Ambient Chimes -->
+    <div class="flex items-center space-x-2">
+      <!-- Romantic Birthday Song Melody Player -->
+      <button id="song-toggle-btn" onclick="toggleBirthdayMelody()" class="px-3 py-1.5 rounded-full bg-gradient-to-r from-rose-500/20 via-solar-gold/20 to-purple-500/20 border border-solar-gold/50 text-xs text-solar-champagne flex items-center space-x-1.5 transition-all hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(255,209,102,0.25)]" title="Play 'Happy Birthday To My Dear Chand' Melody">
+        <i data-lucide="music" id="song-icon" class="w-3.5 h-3.5 text-solar-gold"></i>
+        <span id="song-label" class="text-[11px] font-medium tracking-wide">Play Chand Melody 🎶</span>
+      </button>
+
+      <!-- Ambient Audio Toggle -->
+      <button id="audio-toggle" class="p-2 sm:px-3 sm:py-1.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs text-slate-300 flex items-center space-x-1.5 transition-all hover:scale-105 active:scale-95" title="Toggle Celestial Sur">
+        <i data-lucide="volume-2" id="audio-icon" class="w-4 h-4 text-slate-300"></i>
+        <span id="audio-label" class="hidden sm:inline font-medium tracking-wider text-[10px] uppercase">Sur: On</span>
+      </button>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:text-white">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-drawer" class="fixed inset-x-0 top-[59px] z-30 bg-midnight/95 backdrop-blur-2xl border-b border-white/10 p-5 hidden flex-col space-y-2.5 lg:hidden transition-all shadow-2xl">
+    <button onclick="navigateToPage('gateway')" class="w-full text-left px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 flex items-center space-x-3 text-sm">
+      <i data-lucide="sparkles" class="w-4 h-4 text-solar-gold"></i>
+      <span>Pehla Noor (Welcome)</span>
+    </button>
+    <button onclick="navigateToPage('ceremony')" class="w-full text-left px-4 py-2.5 rounded-xl bg-solar-gold/15 border border-solar-gold/40 hover:bg-solar-gold/25 flex items-center space-x-3 text-sm text-solar-champagne font-medium">
+      <i data-lucide="cake" class="w-4 h-4 text-rose-400"></i>
+      <span>Cute 3D Moon Cake & Balloons 🎂</span>
+    </button>
+    <button onclick="navigateToPage('shayari')" class="w-full text-left px-4 py-2.5 rounded-xl bg-purple-950/40 border border-purple-400/20 hover:bg-purple-900/40 flex items-center space-x-3 text-sm text-purple-200 font-medium">
+      <i data-lucide="feather" class="w-4 h-4 text-purple-300"></i>
+      <span>Dil Ki Shayari (Romantic Verses) ✍️</span>
+    </button>
+    <button onclick="navigateToPage('lunar')" class="w-full text-left px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 flex items-center space-x-3 text-sm">
+      <i data-lucide="moon" class="w-4 h-4 text-indigo-300"></i>
+      <span>Chand Ke Raaz (Compliments) 🌙</span>
+    </button>
+    <button onclick="navigateToPage('solar')" class="w-full text-left px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 flex items-center space-x-3 text-sm">
+      <i data-lucide="sun" class="w-4 h-4 text-solar-gold"></i>
+      <span>Tere Sath vs Tere Bina (Feelings) ☀️</span>
+    </button>
+    <button onclick="navigateToPage('wish')" class="w-full text-left px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 flex items-center space-x-3 text-sm">
+      <i data-lucide="flame" class="w-4 h-4 text-rose-400"></i>
+      <span>Dua Ki Candle & Love Letter 💌</span>
+    </button>
+    <button onclick="navigateToPage('affirmations')" class="w-full text-left px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 flex items-center space-x-3 text-sm">
+      <i data-lucide="heart" class="w-4 h-4 text-rose-400"></i>
+      <span>Jab Bhi Meri Yaad Aaye (Affirmations) ❤️</span>
+    </button>
+  </div>
+
+  <main class="relative z-10 pt-16">
+    <!-- ==========================================
+         PAGE 1: THE ECLIPSE GATEWAY (PEHLA NOOR)
+         ========================================== -->
+    <section id="page-gateway" class="page-view active-page min-h-[92vh] flex flex-col justify-center items-center px-4 sm:px-6 py-12 text-center">
+      <!-- Romantic Celestial Emblem with Moon & Sun -->
+      <div class="relative w-44 h-44 sm:w-56 sm:h-56 mb-8 flex items-center justify-center">
+        <!-- Sun Aura -->
+        <div class="absolute inset-2 rounded-full bg-gradient-to-tr from-rose-600 via-solar-amber to-solar-gold blur-xl opacity-60 animate-pulse-glow"></div>
+        <div class="absolute inset-4 rounded-full bg-gradient-to-br from-solar-gold via-amber-500 to-rose-600 opacity-90 shadow-[0_0_50px_rgba(255,209,102,0.6)]"></div>
+        
+        <!-- Sliding Moon Disc creating Eclipse -->
+        <div class="absolute inset-4 rounded-full bg-[#0d071d] border border-purple-300/30 translate-x-3 -translate-y-2 shadow-2xl flex items-center justify-center overflow-hidden">
+          <div class="w-full h-full bg-radial from-transparent to-black/80"></div>
+          <!-- Cute sleeping moon eye graphic -->
+          <div class="absolute flex flex-col items-center">
+            <span class="text-2xl sm:text-3xl text-solar-champagne font-handwritten">☽ </span>
+          </div>
+        </div>
+
+        <!-- Center Corona Sparkle & Heart -->
+        <div class="relative z-10 flex flex-col items-center">
+          <i data-lucide="heart" class="w-10 h-10 text-rose-400 fill-rose-500 drop-shadow-[0_0_14px_rgba(244,63,94,0.9)] animate-heart-beat"></i>
+        </div>
+
+        <!-- Orbiting Ring -->
+        <div class="absolute inset-0 rounded-full border border-dashed border-solar-gold/30 animate-spin-slow"></div>
+      </div>
+
+      <!-- Hero Hinglish Tagline -->
+      <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-rose-400/40 bg-midnight/70 backdrop-blur-md mb-4 shadow-lg">
+        <i data-lucide="sun" class="w-3.5 h-3.5 text-solar-gold"></i>
+        <span class="text-[11px] font-semibold uppercase tracking-[0.25em] text-solar-champagne">Suraj Ki Dhoop • Mera Pyaara Chand</span>
+        <i data-lucide="heart" class="w-3 h-3 text-rose-400 fill-rose-400"></i>
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl md:text-8xl font-serif font-normal tracking-tight text-white mb-4 leading-none">
+        Happy 18th Birthday, <span class="shimmer-gold font-semibold" id="gateway-name">Meri Jaan</span> ❤️
+      </h1>
+
+      <p class="font-serif italic text-lg sm:text-2xl text-slate-300 max-w-2xl mx-auto mb-8 font-light leading-relaxed">
+        "Tum mere andhere aasman ka wo khubsurat Chand ho, jiske aane se meri har berang raat noor se bhar gayi..."
+      </p>
+
+      <!-- Main Gateway Call-To-Action Portal Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl w-full mb-8 text-left">
+        <!-- 3D Cute Moon Cake Portal -->
+        <button onclick="navigateToPage('ceremony')" class="celestial-glass p-5 rounded-2xl group transition-all duration-300 hover:scale-[1.02] border border-solar-gold/40 hover:border-solar-gold shadow-[0_0_25px_rgba(255,209,102,0.18)]">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs uppercase tracking-widest text-solar-gold font-semibold">Special Ceremony</span>
+            <span class="text-lg">🎂🌙</span>
+          </div>
+          <h3 class="font-serif text-xl text-white group-hover:text-solar-gold flex items-center space-x-1.5">
+            <span>Cute Moon Cake cut Kijie</span>
+            <i data-lucide="heart" class="w-4 h-4 text-rose-400 fill-rose-400"></i>
+          </h3>
+          <p class="text-xs text-slate-300 font-light mt-1">Apne hath se swipe karke cute moon cake slice karo aur floating balloons pop kijie ji!</p>
+        </button>
+
+        <!-- Dil Ki Shayari Portal -->
+        <button onclick="navigateToPage('shayari')" class="celestial-glass-lunar p-5 rounded-2xl group transition-all duration-300 hover:scale-[1.02] hover:border-purple-300/60">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs uppercase tracking-widest text-purple-300 font-semibold">Soulful Words</span>
+            <span class="text-lg">✍️✨</span>
+          </div>
+          <h3 class="font-serif text-xl text-white group-hover:text-purple-200 flex items-center space-x-1.5">
+            <span>Dil Ki Shayari Suno</span>
+            <i data-lucide="sparkles" class="w-4 h-4 text-solar-gold"></i>
+          </h3>
+          <p class="text-xs text-slate-300 font-light mt-1">Wo baatein jo dil me hain par lafzon me bayaan karna mushkil tha... sirf aapke liye.</p>
+        </button>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <button onclick="navigateToPage('ceremony')" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-solar-gold via-amber-400 to-rose-500 text-midnight font-semibold text-xs uppercase tracking-widest shadow-[0_0_30px_rgba(255,209,102,0.5)] hover:shadow-[0_0_45px_rgba(255,209,102,0.8)] hover:scale-105 active:scale-95 transition-all flex items-center space-x-2">
+          <i data-lucide="knife" class="w-4 h-4"></i>
+          <span>Chalo Cake Cutting Karein! 🍰</span>
+        </button>
+        <button onclick="playMelodyAndGoToWish()" class="px-6 py-3.5 rounded-full celestial-glass hover:bg-white/10 text-white font-medium text-xs uppercase tracking-widest transition-all hover:scale-105 active:scale-95 flex items-center space-x-2">
+          <i data-lucide="music" class="w-4 h-4 text-solar-champagne"></i>
+          <span>Play Birthday Melody 🎵</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PAGE 2: CUTE 3D MOON CAKE & BALLOONS
+         ========================================== -->
+    <section id="page-ceremony" class="page-view max-w-6xl mx-auto px-4 sm:px-6 py-10">
+      <div class="text-center max-w-3xl mx-auto mb-8">
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full border border-solar-gold/40 bg-amber-950/40 text-solar-gold text-[11px] uppercase tracking-widest mb-3">
+          <i data-lucide="cake" class="w-3.5 h-3.5 text-rose-400"></i>
+          <span>3D Cute Moon Cake Celebration</span>
+          <i data-lucide="heart" class="w-3 h-3 text-rose-400 fill-rose-400"></i>
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-serif text-white mb-2">
+          Meri Pyaari Cute Moon Cake Kato! 🌙🎂
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base font-light">
+          Mobile par apni finger se (ya mouse drag karke) <span class="text-solar-gold font-medium">cake ke beech me swipe karo</span> cake cut karne ke liye! Phir saare balloons pop karke surprise messages dekho.
+        </p>
+      </div>
+
+      <!-- Top Interactive Indicators -->
+      <div class="flex flex-wrap items-center justify-between gap-4 max-w-4xl mx-auto mb-4 px-2">
+        <div class="flex items-center space-x-2 text-xs text-solar-champagne bg-midnight/80 border border-solar-gold/30 px-3.5 py-1.5 rounded-full shadow-md">
+          <i data-lucide="scissors" class="w-3.5 h-3.5 text-rose-400"></i>
+          <span id="slice-status-badge">Apne soft fingers se cake par swipe kro to cut 🗡️</span>
+        </div>
+
+        <div class="flex items-center space-x-3">
+          <div class="text-xs text-slate-300 bg-midnight/80 border border-white/15 px-3.5 py-1.5 rounded-full flex items-center space-x-1.5">
+            <i data-lucide="heart" class="w-3.5 h-3.5 text-rose-400 fill-rose-400"></i>
+            <span>Balloons Popped: <strong id="balloon-pop-counter" class="text-solar-gold">0</strong> / 6</span>
+          </div>
+
+          <button onclick="resetCakeScene()" class="text-xs text-slate-400 hover:text-white px-3 py-1.5 rounded-full border border-white/10 hover:border-white/30 transition-all flex items-center space-x-1">
+            <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
+            <span>Dobara Cake Kato</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 3D Three.js Cake Viewport Container with Hand Gesture Cut Canvas Overlay -->
+      <div class="relative max-w-4xl mx-auto h-[400px] sm:h-[490px] rounded-3xl overflow-hidden border border-solar-gold/40 celestial-glass shadow-[0_0_60px_rgba(255,209,102,0.2)] mb-8 select-none">
+        
+        <!-- 3D Canvas rendered by Three.js -->
+        <div id="cake-3d-container" class="absolute inset-0 w-full h-full"></div>
+
+        <!-- Touch / Gesture Drawing Overlay for knife cutting streak -->
+        <canvas id="gesture-canvas" class="absolute inset-0 w-full h-full z-20"></canvas>
+
+        <!-- Onscreen Mobile/Desktop Hint Helper -->
+        <div id="cut-helper-prompt" class="absolute bottom-4 inset-x-0 flex justify-center pointer-events-none z-30 transition-opacity duration-500">
+          <div class="bg-midnight/85 backdrop-blur-md px-5 py-2 rounded-full border border-solar-gold/50 text-solar-champagne text-xs flex items-center space-x-2 shadow-2xl animate-pulse">
+            <i data-lucide="hand" class="w-4 h-4 text-solar-gold"></i>
+            <span>Touch karke horizontally swipe karo to cut the Moon Cake 🌙✨</span>
+          </div>
+        </div>
+
+        <!-- Slice Celebration Banner -->
+        <div id="slice-success-banner" class="absolute top-6 inset-x-0 flex justify-center pointer-events-none z-30 opacity-0 transition-all duration-700">
+          <div class="bg-gradient-to-r from-solar-gold via-rose-400 to-amber-300 text-midnight px-6 py-2.5 rounded-full font-serif text-lg font-bold shadow-2xl flex items-center space-x-2">
+            <i data-lucide="heart" class="w-5 h-5 fill-midnight"></i>
+            <span>Happy Birthday Meri Jaan! Sweetest Moon Cake Sliced! 🎉❤️</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CELESTIAL BALLOON BURSTING ZONE WITH HINGLISH WISHES -->
+      <div class="max-w-4xl mx-auto celestial-glass rounded-3xl p-6 sm:p-8 border border-white/15 relative overflow-hidden">
+        <div class="flex items-center justify-between mb-4 border-b border-white/10 pb-3">
+          <div class="flex items-center space-x-2">
+            <i data-lucide="sparkles" class="w-5 h-5 text-solar-gold"></i>
+            <h3 class="font-serif text-xl sm:text-2xl text-white">Balloons Phodo Aur Surprise Dekho! 🎈</h3>
+          </div>
+          <span class="text-xs text-rose-300 font-light flex items-center space-x-1">
+            <i data-lucide="heart" class="w-3.5 h-3.5 fill-rose-400"></i>
+            <span>Tap each balloon</span>
+          </span>
+        </div>
+
+        <!-- Floating Balloons Container -->
+        <div id="balloons-arena" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 py-4 min-h-[170px] items-center justify-items-center">
+          <!-- Dynamically populated balloons -->
+        </div>
+
+        <!-- Recent Popped Balloon Message Box -->
+        <div id="balloon-message-box" class="hidden text-center mt-3 p-3.5 rounded-2xl bg-rose-500/10 border border-rose-400/30 transition-all">
+          <p class="text-xs text-rose-300 uppercase tracking-widest font-semibold">Dil Ki Baat:</p>
+          <p id="balloon-message-text" class="font-serif italic text-lg sm:text-xl text-solar-champagne mt-0.5"></p>
+        </div>
+
+        <div id="all-balloons-popped-msg" class="hidden text-center mt-4 p-5 rounded-2xl bg-solar-gold/15 border border-solar-gold/40">
+          <p class="font-serif italic text-lg sm:text-2xl text-solar-champagne">
+            "Saare balloons phod diye! Meri har ek saans tumhari khushi ke liye dua karti hai... I love you meri jaan!" ❤️
+          </p>
+        </div>
+      </div>
+
+      <!-- Navigation to Next Realm -->
+      <div class="max-w-4xl mx-auto mt-10 flex justify-between items-center border-t border-white/10 pt-6">
+        <button onclick="navigateToPage('gateway')" class="text-xs uppercase tracking-widest text-slate-400 hover:text-white flex items-center space-x-2">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          <span>Wapas Home</span>
+        </button>
+        <button onclick="navigateToPage('shayari')" class="px-6 py-3 rounded-full bg-gradient-to-r from-solar-gold to-rose-500 text-midnight text-xs uppercase tracking-widest font-semibold flex items-center space-x-2 shadow-lg hover:scale-105 active:scale-95 transition-all">
+          <span>Dil Ki Shayari Pdhie ji</span>
+          <i data-lucide="feather" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PAGE 3: DIL KI SHAYARI (ROMANTIC VERSES)
+         ========================================== -->
+    <section id="page-shayari" class="page-view max-w-5xl mx-auto px-4 sm:px-6 py-12">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full border border-purple-400/40 bg-purple-950/40 text-purple-300 text-[11px] uppercase tracking-widest mb-3">
+          <i data-lucide="feather" class="w-3.5 h-3.5"></i>
+          <span>Meri Kalam Se Sirf Aapke Liye</span>
+          <i data-lucide="heart" class="w-3 h-3 text-rose-400 fill-rose-400"></i>
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-serif text-white mb-3">
+          Chand Ke Naam Kuch Khaas Shayari ✨
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base font-light">
+          Aasman me hazaron sitare hain, par meri nazar hamesha sirf ek hi chand par thehar jaati hai.
+        </p>
+      </div>
+
+      <!-- Shayari Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-12">
+        
+        <!-- Shayari Card 1 -->
+        <div class="celestial-glass-lunar p-7 sm:p-9 rounded-3xl relative overflow-hidden border border-purple-400/30 group hover:border-solar-gold transition-all duration-300">
+          <div class="absolute -top-10 -right-10 w-32 h-32 bg-purple-600/10 rounded-full blur-2xl"></div>
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-xs uppercase tracking-widest text-purple-300 font-semibold">Shayari #01</span>
+            <i data-lucide="heart" class="w-4 h-4 text-rose-400 fill-rose-400"></i>
+          </div>
+          <p class="font-serif italic text-lg sm:text-xl text-white leading-relaxed mb-4">
+            "Chand sa chehra, taaron si muskan,<br>
+            Tmse hi roshan hai mera jahan.<br>
+            Dua hai rab se har khushi mile tumko,<br>
+            Kyunki tm hi to ho meri pyari jaan!"
+          </p>
+          <div class="text-right">
+            <span class="font-handwritten text-xl text-solar-champagne">— Sirf Tumhare Liye</span>
+          </div>
+        </div>
+
+        <!-- Shayari Card 2 -->
+        <div class="celestial-glass-solar p-7 sm:p-9 rounded-3xl relative overflow-hidden border border-solar-gold/30 group hover:border-rose-400 transition-all duration-300">
+          <div class="absolute -top-10 -right-10 w-32 h-32 bg-rose-600/10 rounded-full blur-2xl"></div>
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-xs uppercase tracking-widest text-solar-gold font-semibold">Shayari #02</span>
+            <i data-lucide="sparkles" class="w-4 h-4 text-solar-gold"></i>
+          </div>
+          <p class="font-serif italic text-lg sm:text-xl text-white leading-relaxed mb-4">
+            "Suraj ki grmi ho ya chandni raat,<br>
+            Har lamha meetha lge jb ho tumhara sath.<br>
+            Ye din to srf ek bahana hai kahne ka,<br>
+            Meri har ek dhadkan me basi hai tumhari baat!"
+          </p>
+          <div class="text-right">
+            <span class="font-handwritten text-xl text-solar-champagne">— Hamesha Tumhara</span>
+          </div>
+        </div>
+
+        <!-- Shayari Card 3 -->
+        <div class="celestial-glass-solar p-7 sm:p-9 rounded-3xl relative overflow-hidden border border-solar-gold/30 group hover:border-purple-300 transition-all duration-300">
+          <div class="absolute -top-10 -right-10 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl"></div>
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-xs uppercase tracking-widest text-solar-gold font-semibold">Shayari #03</span>
+            <i data-lucide="moon" class="w-4 h-4 text-purple-300"></i>
+          </div>
+          <p class="font-serif italic text-lg sm:text-xl text-white leading-relaxed mb-4">
+            "Aasman ke chand me to daag bhi hai,<br>
+            Par mere chand me to sirf noor hi noor hai.<br>
+            Khuda kre har janam me tm hi milo,<br>
+            Dil ko bs yhi khwahish manzoor hai!"
+          </p>
+          <div class="text-right">
+            <span class="font-handwritten text-xl text-solar-champagne">— Meri Zindagi</span>
+          </div>
+        </div>
+
+        <!-- Shayari Card 4 -->
+        <div class="celestial-glass-lunar p-7 sm:p-9 rounded-3xl relative overflow-hidden border border-purple-400/30 group hover:border-rose-400 transition-all duration-300">
+          <div class="absolute -top-10 -right-10 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl"></div>
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-xs uppercase tracking-widest text-purple-300 font-semibold">Shayari #04</span>
+            <i data-lucide="heart" class="w-4 h-4 text-rose-400 fill-rose-400"></i>
+          </div>
+          <p class="font-serif italic text-lg sm:text-xl text-white leading-relaxed mb-4">
+            "Tm muskura do to lgta hai subah ho gyi,<br>
+            Tum naraz ho jao to lgta hai duniya so gyi.<br>
+            Apni is pyari si hasi ko kbhi khone mt dena,<br>
+            Kyunki meri sari khushiyan tmhari hsi me kho gyi!"
+          </p>
+          <div class="text-right">
+            <span class="font-handwritten text-xl text-solar-champagne">— Meri Jaan Ke Liye</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigation to Next Realm -->
+      <div class="flex justify-between items-center border-t border-white/10 pt-6">
+        <button onclick="navigateToPage('ceremony')" class="text-xs uppercase tracking-widest text-slate-400 hover:text-white flex items-center space-x-2">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          <span>Wapas 3D Cake</span>
+        </button>
+        <button onclick="navigateToPage('lunar')" class="px-5 py-2.5 rounded-full bg-purple-500/20 hover:bg-purple-500/30 text-purple-200 border border-purple-400/40 text-xs uppercase tracking-widest font-semibold flex items-center space-x-2 transition-all">
+          <span>Chand Ke Raaz Dekho</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PAGE 4: LUNAR HAVEN (CHAND KE RAAZ)
+         ========================================== -->
+    <section id="page-lunar" class="page-view max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full border border-indigo-400/30 bg-indigo-950/40 text-indigo-300 text-[11px] uppercase tracking-widest mb-3">
+          <i data-lucide="moon-star" class="w-3.5 h-3.5"></i>
+          <span>Lunar Serenity • Chand Ki Khubiyan</span>
+          <i data-lucide="heart" class="w-3 h-3 text-rose-400 fill-rose-400"></i>
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-serif text-white mb-3">
+          Wo Baatein Jo Tumhe Sabse Khaas Banati Hain
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base font-light">
+          Kisi card par tap karo aur dekho wo choti-choti pyari cheezein jinki wajah se mera dil hr roz tm par dubara fida ho jata hai.
+        </p>
+      </div>
+
+      <!-- 6 Interactive 3D Lunar Flip Cards Grid -->
+      <div id="lunar-cards-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16">
+        <!-- Rendered by JS from CONFIG.lunarThoughts -->
+      </div>
+
+      <!-- Lunar Quote Feature -->
+      <div class="celestial-glass-lunar rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden">
+        <div class="absolute -top-12 -left-12 w-48 h-48 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none"></div>
+        <i data-lucide="quote" class="w-8 h-8 text-indigo-300/40 mx-auto mb-4"></i>
+        <blockquote class="font-serif italic text-2xl sm:text-3xl text-lunar-silver max-w-2xl mx-auto leading-relaxed mb-4">
+          "Chand ki tarah tmhari shanti aur sukoon bhari baatein mere saare din ki thakan mita deti hain. You are my greatest peace."
+        </blockquote>
+        <span class="text-xs uppercase tracking-widest text-indigo-300 font-semibold">— Dedicated to My Sweetest Moon ❤️</span>
+      </div>
+
+      <!-- Navigation to Next Realm -->
+      <div class="mt-12 flex justify-between items-center border-t border-white/10 pt-6">
+        <button onclick="navigateToPage('shayari')" class="text-xs uppercase tracking-widest text-slate-400 hover:text-white flex items-center space-x-2">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          <span>Wapas Shayari</span>
+        </button>
+        <button onclick="navigateToPage('solar')" class="px-5 py-2.5 rounded-full bg-solar-gold/20 hover:bg-solar-gold/30 text-solar-champagne border border-solar-gold/40 text-xs uppercase tracking-widest font-semibold flex items-center space-x-2 transition-all">
+          <span>Tere Sath vs Tere Bina</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PAGE 5: SOLAR RADIANCE (TERE SATH VS TERE BINA)
+         ========================================== -->
+    <section id="page-solar" class="page-view max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full border border-solar-gold/30 bg-amber-950/40 text-solar-gold text-[11px] uppercase tracking-widest mb-3">
+          <i data-lucide="sun-medium" class="w-3.5 h-3.5"></i>
+          <span>Solar Radiance • Suraj Ka Noor</span>
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-serif text-white mb-3">
+          Meri Zindagi: Tere Sath vs Tere Bina
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base font-light">
+          Neeche diye button ko toggle karke dekho ki tmhare hone aur na hone se meri duniya me kitna bada frk pd jata hai.
+        </p>
+      </div>
+
+      <!-- State Switcher Toggle -->
+      <div class="flex justify-center mb-8">
+        <div class="celestial-glass p-1.5 rounded-full inline-flex items-center space-x-2 border border-solar-gold/20">
+          <button id="toggle-without" onclick="setSolarMode(false)" class="px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white">
+            <span class="flex items-center space-x-2">
+              <i data-lucide="cloud" class="w-3.5 h-3.5"></i>
+              <span>Jab Tm Pass Ni Hoti</span>
+            </span>
+          </button>
+          <button id="toggle-with" onclick="setSolarMode(true)" class="px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 bg-gradient-to-r from-solar-gold via-amber-400 to-rose-500 text-midnight shadow-lg">
+            <span class="flex items-center space-x-2">
+              <i data-lucide="sun" class="w-3.5 h-3.5"></i>
+              <span>Jab Tm Sath Hoti Ho ❤️</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Dynamic Solar Comparison Card Container -->
+      <div id="solar-contrast-box" class="relative rounded-3xl overflow-hidden transition-all duration-700 p-8 sm:p-12 border border-solar-gold/40 celestial-glass-solar shadow-[0_0_50px_rgba(255,209,102,0.18)] mb-16">
+        <div id="solar-aura" class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-rose-500/20 filter blur-3xl pointer-events-none transition-all duration-700"></div>
+
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <div id="solar-badge" class="inline-block px-3 py-1 rounded-full text-[10px] uppercase tracking-widest font-semibold bg-solar-gold/20 text-solar-champagne border border-solar-gold/40 mb-4 transition-all">
+              State: Har Lamha Roshan Aur Rangeen ✨
+            </div>
+            <h3 id="solar-title" class="text-2xl sm:text-4xl font-serif text-white mb-4 transition-all">
+              Tm sath ho to har aam din bhi ek festival ban jata hai!
+            </h3>
+            <p id="solar-desc" class="text-slate-300 font-light text-sm sm:text-base leading-relaxed mb-8 transition-all">
+              Tmhari ek hasi mere saare stress ko gayab kar deti hai. Maggie khana bhi romantic lagta hai, lamba rasta bhi chota lagta hai, aur dil hr waqt khush rehta hai sirf isliye kyunki tm meri zindagi me ho.
+            </p>
+
+            <div class="grid grid-cols-2 gap-6 pt-6 border-t border-white/10" id="solar-metrics">
+              <div>
+                <span class="block text-3xl font-serif text-solar-gold" id="solar-val-1">1000%</span>
+                <span class="text-xs text-slate-400 font-light" id="solar-lbl-1">Hasi & Khushi</span>
+              </div>
+              <div>
+                <span class="block text-3xl font-serif text-rose-400" id="solar-val-2">Infinite ❤️</span>
+                <span class="text-xs text-slate-400 font-light" id="solar-lbl-2">Pyaar Aur Sukoon</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Visual Graphic Box -->
+          <div class="flex justify-center">
+            <div id="solar-visual-card" class="w-64 h-64 sm:w-80 sm:h-80 rounded-3xl celestial-glass border border-solar-gold/40 flex flex-col items-center justify-center p-6 text-center shadow-2xl relative transition-all duration-700">
+              <div id="solar-icon-container" class="w-24 h-24 rounded-full bg-gradient-to-tr from-rose-500 via-amber-400 to-solar-gold flex items-center justify-center shadow-xl mb-4 transition-transform group-hover:rotate-45">
+                <i data-lucide="heart" id="solar-main-icon" class="w-12 h-12 text-midnight fill-midnight"></i>
+              </div>
+              <p id="solar-visual-quote" class="font-handwritten text-2xl sm:text-3xl text-solar-champagne transition-all">
+                "Suraj to sirf aasmaan ko chamkata hai, par tum meri poori rooh ko roshan karti ho ji."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation to Next Realm -->
+      <div class="mt-8 flex justify-between items-center border-t border-white/10 pt-6">
+        <button onclick="navigateToPage('lunar')" class="text-xs uppercase tracking-widest text-slate-400 hover:text-white flex items-center space-x-2">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          <span>Chand Ke Raaz</span>
+        </button>
+        <button onclick="navigateToPage('wish')" class="px-5 py-2.5 rounded-full bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-400/40 text-xs uppercase tracking-widest font-semibold flex items-center space-x-2 transition-all">
+          <span>Dua Ki Flame & Khat</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PAGE 6: THE WISH FLAME & EMOTIONAL LOVE LETTER
+         ========================================== -->
+    <section id="page-wish" class="page-view max-w-4xl mx-auto px-4 sm:px-6 py-12 text-center">
+      <div class="celestial-glass rounded-3xl p-6 sm:p-12 border border-solar-gold/40 shadow-[0_0_50px_rgba(255,209,102,0.2)] relative overflow-hidden">
+        
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full border border-rose-400/30 bg-rose-950/40 text-rose-300 text-[11px] uppercase tracking-widest mb-3">
+          <i data-lucide="flame" class="w-3.5 h-3.5 text-rose-400"></i>
+          <span>Sabse Khaas Dua</span>
+          <i data-lucide="heart" class="w-3 h-3 text-rose-400 fill-rose-400"></i>
+        </div>
+
+        <h2 class="text-3xl sm:text-5xl font-serif text-white mb-2">
+          Dil Se Ek Wish Mango, Meri Jaan ✨
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base font-light max-w-lg mx-auto mb-8">
+          Aankhein band karo, apne dil ki sabse pyari khwahish socho, aur is golden candle par tap karke ise blow out karo... tmhari har dua qubool hogi!
+        </p>
+
+        <!-- Interactive Candle & Celestial Flame Component -->
+        <div class="relative flex flex-col items-center justify-center my-8 cursor-pointer select-none group" id="candle-interact-zone" onclick="extinguishFlame()">
+          
+          <!-- Smoke particles wrapper -->
+          <div id="candle-smoke" class="hidden absolute top-[-50px] pointer-events-none">
+            <div class="w-4 h-16 bg-white/40 rounded-full blur-md animate-smoke-rise"></div>
+          </div>
+
+          <!-- Realistic Layered SVG Flame with Glow Aura -->
+          <div id="interactive-flame" class="relative z-20 flex flex-col items-center transition-all duration-700 animate-flame-flicker group-hover:scale-110">
+            <!-- Pulsing Corona Glow -->
+            <div class="absolute -top-4 w-20 h-20 rounded-full bg-rose-400/40 filter blur-xl animate-pulse"></div>
+            
+            <svg class="w-12 h-20" viewBox="0 0 100 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M50 0C50 0 85 45 85 100C85 135 68 160 50 160C32 160 15 135 15 100C15 45 50 0 50 0Z" fill="url(#sunFlameGrad)" />
+              <path d="M50 35C50 35 72 70 72 110C72 130 62 148 50 148C38 148 28 130 28 110C28 70 50 35 50 35Z" fill="url(#coreWhiteFlame)" />
+              <defs>
+                <linearGradient id="sunFlameGrad" x1="50" y1="0" x2="50" y2="160" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#FFF275" />
+                  <stop offset="0.4" stop-color="#FF9B26" />
+                  <stop offset="0.8" stop-color="#FF4365" />
+                  <stop offset="1" stop-color="#540D6E" />
+                </linearGradient>
+                <linearGradient id="coreWhiteFlame" x1="50" y1="35" x2="50" y2="148" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#FFFFFF" />
+                  <stop offset="0.7" stop-color="#FFEBB3" />
+                  <stop offset="1" stop-color="#FFB319" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          <!-- Candle Wick -->
+          <div class="w-1.5 h-4 bg-amber-950 rounded-t -mt-1 z-10"></div>
+
+          <!-- Pillar Candle Base (Celestial Sun & Moon Wax) -->
+          <div class="w-16 sm:w-20 h-40 bg-gradient-to-b from-solar-champagne via-solar-gold to-amber-700 rounded-t-lg shadow-2xl relative overflow-hidden border-t border-white/60">
+            <div class="absolute -top-1 left-2 w-3.5 h-6 bg-solar-champagne rounded-b-full"></div>
+            <div class="absolute -top-1 right-3 w-4 h-9 bg-solar-champagne rounded-b-full"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-black/30"></div>
+            <!-- Heart icon on candle wax -->
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i data-lucide="heart" class="w-7 h-7 text-rose-600/70 fill-rose-600/50"></i>
+            </div>
+          </div>
+
+          <!-- Golden Base Pedestal -->
+          <div class="w-32 sm:w-36 h-4 bg-gradient-to-r from-solar-gold via-rose-400 to-solar-gold rounded-full shadow-lg -mt-1 border border-white/40"></div>
+
+          <!-- Flame Action Status Indicator -->
+          <p id="flame-instruction" class="text-xs uppercase tracking-widest text-solar-champagne mt-6 font-semibold group-hover:text-white transition-colors flex items-center space-x-1.5">
+            <i data-lucide="wind" class="w-4 h-4 text-solar-gold"></i>
+            <span>Tap To Blow Out Flame & Unlock Secret Khat 💌</span>
+          </p>
+        </div>
+
+        <!-- REVEALED HEARTFELT HINGLISH LOVE LETTER -->
+        <div id="unlocked-letter" class="hidden text-left mt-8 p-6 sm:p-10 rounded-2xl bg-midnight/90 border border-solar-gold/40 transition-all duration-1000 shadow-2xl">
+          <div class="flex items-center space-x-3 mb-6 border-b border-solar-gold/20 pb-4">
+            <i data-lucide="heart" class="w-5 h-5 text-rose-400 fill-rose-400"></i>
+            <span class="text-xs uppercase tracking-[0.25em] text-solar-gold font-semibold">Sirf Mere Pyaare Chand Ke Liye Ek Dil Se Khat</span>
+          </div>
+
+          <h3 id="letter-greeting" class="font-serif italic text-2xl sm:text-3xl text-solar-champagne mb-4">
+            Meri Sabse Pyari Kitten, Mera Chand ❤️
+          </h3>
+
+          <div id="letter-content" class="text-slate-200 text-sm sm:text-base leading-relaxed space-y-4 font-light">
+            <!-- Populated via CONFIG -->
+          </div>
+
+          <!-- Emotional Romantic Shayari Inside Letter -->
+          <div class="my-6 p-4 rounded-xl bg-purple-950/40 border border-purple-400/30 text-center">
+            <p class="font-serif italic text-base sm:text-lg text-solar-champagne">
+              "Na suraj ki talab hai, na sitaron ki tamanna,<br>
+              Bas tm muskurati rho, yhi hai meri zindagi ka gehna!"
+            </p>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-start sm:items-center text-xs text-slate-400 gap-3">
+            <span class="font-handwritten text-3xl text-solar-gold" id="letter-closing-signature">Hmesha Srf Aapka ❤️</span>
+            <span class="italic text-[11px] text-slate-500 tracking-wider">Sun & Moon ka ye vaada ta-umr rhega...</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigation to Next Realm -->
+      <div class="mt-8 flex justify-between items-center border-t border-white/10 pt-6">
+        <button onclick="navigateToPage('solar')" class="text-xs uppercase tracking-widest text-slate-400 hover:text-white flex items-center space-x-2">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          <span>Wapas Solar Realm</span>
+        </button>
+        <button onclick="navigateToPage('affirmations')" class="px-5 py-2.5 rounded-full bg-rose-500/20 hover:bg-rose-500/30 text-rose-200 border border-rose-400/30 text-xs uppercase tracking-widest font-semibold flex items-center space-x-2 transition-all">
+          <span>Jab Meri Yaad Aaye</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PAGE 7: STARLIGHT CAPSULE (JAB BHI MERI YAAD AAYE)
+         ========================================== -->
+    <section id="page-affirmations" class="page-view max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full border border-solar-gold/30 bg-midnight text-solar-champagne text-[11px] uppercase tracking-widest mb-3">
+          <i data-lucide="heart" class="w-3.5 h-3.5 text-rose-400 fill-rose-400"></i>
+          <span>Orbit of Love • Mera Infinite Pyar</span>
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-serif text-white mb-3">
+          Jab Bhi Meri Yaad Aaye Ya Mood Off Ho ❤️
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base font-light">
+          Jab bhi kbhi akela ya thoda udaas feel karo, to bs is button ko dabana. Ye aapke liye mere dil ki direct awaaz hai.
+        </p>
+      </div>
+
+      <!-- Interactive Affirmation Dispenser Box -->
+      <div class="max-w-2xl mx-auto celestial-glass rounded-3xl p-8 text-center border border-rose-400/40 mb-16 shadow-[0_0_30px_rgba(244,63,94,0.2)] relative overflow-hidden">
+        <div class="w-14 h-14 rounded-full bg-rose-500/10 border border-rose-400/30 flex items-center justify-center mx-auto mb-4 text-rose-400">
+          <i data-lucide="heart" class="w-6 h-6 fill-rose-400 animate-pulse"></i>
+        </div>
+
+        <h3 class="font-serif text-2xl text-white mb-2">Instant Smile Generator</h3>
+        <p class="text-xs text-slate-400 mb-6">Neeche tap karo aur mere dil ka ek sweet message receive kijie:</p>
+
+        <button onclick="generateAffirmation()" class="px-7 py-3 rounded-full bg-gradient-to-r from-rose-500 via-solar-gold to-amber-400 hover:scale-105 text-midnight font-semibold text-xs uppercase tracking-widest transition-all duration-300 active:scale-95 shadow-[0_0_25px_rgba(244,63,94,0.4)] flex items-center space-x-2 mx-auto">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span>Pyaar Bhra Message Pdhie ji ❤️</span>
+        </button>
+
+        <!-- Dynamic Affirmation Text Container -->
+        <div class="min-h-[75px] flex items-center justify-center mt-6">
+          <p id="affirmation-display" class="font-serif italic text-xl sm:text-2xl text-solar-champagne transition-all duration-500">
+            "Tm is poori duniya me sabse zyada precious ho, aur main hamesha aapke sth hoon."
+          </p>
+        </div>
+      </div>
+
+      <!-- Polaroid Memory Highlights Grid -->
+      <div class="mb-14">
+        <h3 class="font-serif text-2xl sm:text-3xl text-white text-center mb-8 flex items-center justify-center space-x-2">
+          <span>Humari Pyari Yaadon Ka Reel</span>
+          <i data-lucide="camera" class="w-6 h-6 text-solar-gold"></i>
+        </h3>
+        <div id="memory-polaroids-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Closing Footer Note -->
+      <footer class="text-center pt-10 pb-16 border-t border-white/10 text-xs text-slate-400 tracking-widest uppercase">
+        <p>Created with infinite love for <span id="footer-recipient-name" class="text-solar-gold font-semibold">Moon</span> • Meri Jaan, Mera Chand 🌙❤️</p>
+        <p class="mt-2 text-[10px] text-slate-500">Jb tk aasmaan me suraj aur chand rhenge, tb tk mera pyaar aapke sth rhega.</p>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Photo Lightbox Modal -->
+  <div id="photo-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-solar-gold p-2 transition-colors">
+      <i data-lucide="x" class="w-8 h-8"></i>
+    </button>
+    <div class="max-w-2xl w-full flex flex-col items-center">
+      <img id="modal-image" src="" alt="Zoomed Memory" class="rounded-2xl max-h-[75vh] object-contain shadow-2xl border border-white/20">
+      <p id="modal-caption" class="font-handwritten text-2xl text-solar-champagne mt-4 text-center"></p>
+    </div>
+  </div>
+
+  <script>
+    /* ========================================================
+     * STREAMING_CHUNK:Defining CONFIG with rich Hinglish content and emotional memories
+     * ======================================================== */
+    const CONFIG = {
+      recipientName: "Moon",
+      nickname: "Mera Chand",
+      
+      // Deep emotional Love Letter in soulful Hinglish
+      letter: {
+        greeting: "Meri Sabse Pyaari Chandani ji, Mera Chand ❤️,",
+        paragraphs: [
+          "Agr main sari duniya ke lfzon ko ikkattha kr loon, tb bhi ye bayan ni kr skta ki tm mere liye kitni anmol ho. Tm srf meri dost ya partner ni ho, tm meri rooh ka wo sukoon ho jiske pas aate hi meri sari pareshaniyan gayab ho jati hain.",
+          "Jaise andhere aasmaan me chand ki thndi roshni rasta dikhati hai, waise hi meri zindagi me jb bhi udasi aayi hai, tmhari ek pyari si awaaz, msg aur hsi ne sb ku6 thk kr diya hai. Tmhara care krna, 6oti 6oti batein yad rkhna, ar bina ku6 bole mera mood predict kr lena—ye sb wo yadein hain jo mere dil ke sbse kareeb hain.",
+          "Tmhare is janamdin pr main uprwale se srf yhi wish krta hoon ki tmhari ankhon me kbhi aansu na aayein, sivaaye bepanah khushi ke aansuon ke. Tmhare sare spne sch ho, tmhara chehra hmesha yuhi khilta rhe, ar chahe waqt kaisa bhi bdle, hmara sth hmesa bna rhe.",
+          "Happy Birthday my Love 💖🤟. You are, and will always be, the brightest and most beautiful moon in my universe."
+        ],
+        signature: "Hmesha srf aapka pyaar,"
+      },
+
+      // Lunar Realm: 6 Constellation Thoughts in Hinglish
+      lunarThoughts: [
+        {
+          id: 1,
+          icon: "heart",
+          title: "Tmhari Masoom Muskan",
+          teaser: "Jo har udas din ko roshan kr deti hai",
+          detail: "Jb tm khul kr hsti ho na, to sch me lgta hai ki duniya ki sari khushiyan ek trf ar tmhari hsi ek trf. It heals my heart instantly."
+        },
+        {
+          id: 2,
+          icon: "moon",
+          title: "Sukoon Bhri Batein",
+          teaser: "Rat ko der tk tmse batein krna",
+          detail: "Chahe kitna bhi thaka hua din ho, rat ko bs tmhari awaaz sun lu ya pic dekh lu to aisa lgta hai jaise meri rooh ko chain mil gya ho. Aap mera sbse pyara safe space ho."
+        },
+        {
+          id: 3,
+          icon: "sparkles",
+          title: "Kitna Care Krti Ho",
+          teaser: "6oti 6oti baton ka khayal rkhna",
+          detail: "Maine khana khaya ya ni, meri tbiyat kaisi hai, mera xam kaisa gya... jitni fikr tm meri krti ho, utna to koi ni kr sakta. Aapka ye pyaar hi meri sbse bdi taqat hai."
+        },
+        {
+          id: 4,
+          icon: "flame",
+          title: "Tmhari Cute Gusse Wli Look",
+          teaser: "Jb tm thodi si possessive hoti ho",
+          detail: "Jb tm thoda sa chidh jati ho ya cute sa muh bnati ho, to ar bhi zyada pyari lgti ho! Tmhara hr ek andaz mere dil ko chhu leta hai."
+        },
+        {
+          id: 5,
+          icon: "compass",
+          title: "Mera Sbse Sachha Dost",
+          teaser: "Jiske samne koi prda ni",
+          detail: "Duniya ke samne chahe kitna bhi strong bnna pde, pr tmhare sth main jaisa hoon waisa rh skta hoo. Tm meri sbse achhi dost ho."
+        },
+        {
+          id: 6,
+          icon: "shield",
+          title: "Anmol Rishta",
+          teaser: "Jo har janam ke liye likha gya hai",
+          detail: "Ye srf ek saal ka rishta ni hai, meri rooh ne tmhari rooh ko phchan liya hai. Tm mere liye is poore life me sabse alg ar khas ho."
+        }
+      ],
+
+      // Photo Memories for Polaroid Gallery
+      photos: [
+        {
+          url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80",
+          caption: "Wo shaam jab tumhari muskan ne mera dil jeet liya tha.",
+          tag: "Pehli Mulaqat"
+        },
+        {
+          url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=80",
+          caption: "Tumhari ye beparwah hasi hamesha aisi hi khilti rahe!",
+          tag: "Pure Smile"
+        },
+        {
+          url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=80",
+          caption: "Taaron ke neeche, sirf tum aur tumhari pyari baatein.",
+          tag: "Midnight Sukoon"
+        }
+      ],
+
+      // Affirmations in Hinglish for "Jab Meri Yaad Aaye"
+      affirmations: [
+        "Tm is poori duniya me sbse pyari ho, ar tm jaisi koi doosri nahi hai! ❤️",
+        "Apne aap pr kabhi doubt mt krna, tm me wo taaqat hai jo andhere ko bhi roshan kr skti hai.",
+        "Mera dil hmesha tmhare sth hai, chahe hm kitne bhi door kyun na hon.",
+        "Tmhari hr ek khushi mere liye sbse phle aati hai. Keep smiling my love!",
+        "Agr kbhi udas lgo, to bs ankh band krke socho—main hmesha tmhare pas hoon.",
+        "Tm meri zindagi ka sbse khoobsurat tohfa ho, I love you to my moon Forever🤟!"
+      ],
+
+      // Celestial Balloons with Hinglish Pop Messages
+      balloons: [
+        { id: 1, label: "Suraj Ka Noor", color: "from-amber-400 to-yellow-500", icon: "sun", wish: "Tm meri zindagi ka wo suraj ho jo har subah khushiyan lati hai!" },
+        { id: 2, label: "Mera Chand", color: "from-indigo-400 to-purple-600", icon: "moon", wish: "Tm mere aasmaan ka sbse pyara chand ho, jiske bina hr rat adhoori hai!" },
+        { id: 3, label: "Dil Ki Dhadkan", color: "from-rose-400 to-pink-600", icon: "heart", wish: "Meri har ek saans tumhare liye dua mangti hai meri jaan!" },
+        { id: 4, label: "Pyar Ka Tara", color: "from-amber-300 to-solar-gold", icon: "sparkles", wish: "Hmesha yuhi chmkti rho ar hsti rho!" },
+        { id: 5, label: "Mera Sukoon", color: "from-violet-500 to-indigo-800", icon: "feather", wish: "Tmhare sth bitaya hua hr lamha meri zindagi ka sabse best pal hai!" },
+        { id: 6, label: "Happy Birthday", color: "from-rose-500 to-red-600", icon: "cake", wish: "Janamdin ki bohot bohot mubarak meri sukoon girl! May all your wishes come true! 🎂❤️" }
+      ]
+    };
+
+    /* ========================================================
+     * STREAMING_CHUNK:Setting up SPA routing and transitions
+     * ======================================================== */
+    function navigateToPage(pageId) {
+      const pages = document.querySelectorAll('.page-view');
+      pages.forEach(p => p.classList.remove('active-page'));
+
+      const navButtons = document.querySelectorAll('.nav-btn');
+      navButtons.forEach(btn => btn.classList.remove('active-nav'));
+
+      const targetPage = document.getElementById(`page-${pageId}`);
+      if (targetPage) {
+        targetPage.classList.add('active-page');
+      }
+
+      const activeNavBtn = document.querySelector(`.nav-btn[data-page="${pageId}"]`);
+      if (activeNavBtn) {
+        activeNavBtn.classList.add('active-nav');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      const drawer = document.getElementById('mobile-drawer');
+      if (drawer && !drawer.classList.contains('hidden')) {
+        drawer.classList.add('hidden');
+      }
+
+      // Initialize or resize Cute Moon Cake if on Ceremony page
+      if (pageId === 'ceremony') {
+        setTimeout(initOrResizeCake, 50);
+      }
+
+      playTone(523.25, 1.2, 0.04);
+      spawnHeartParticle(window.innerWidth / 2, 100);
+      lucide.createIcons();
+    }
+
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-drawer').classList.toggle('hidden');
+    });
+
+    function playMelodyAndGoToWish() {
+      startBirthdayMelody();
+      navigateToPage('wish');
+    }
+
+    /* ========================================================
+     * STREAMING_CHUNK:Synthesizing Web Audio "Happy Birthday To My Dear Chand" & Ambient Sur
+     * ======================================================== */
+    let audioContext = null;
+    let isAmbientActive = true;
+    let synthLoopTimer = null;
+    let isPlayingMelody = false;
+    let melodyTimeouts = [];
+
+    // Pentatonic scale for celestial ambient chimes
+    const scale = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25];
+
+    function ensureAudioContext() {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioContext.state === 'suspended') {
+        audioContext.resume();
+      }
+    }
+
+    // High quality bell / chime tone generator
+    function playTone(freq, duration = 1.8, volume = 0.06, type = 'sine') {
+      ensureAudioContext();
+      try {
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        // Harmonic for warm bell resonance
+        const harmOsc = audioContext.createOscillator();
+        const harmGain = audioContext.createGain();
+
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioContext.currentTime);
+
+        harmOsc.type = 'triangle';
+        harmOsc.frequency.setValueAtTime(freq * 2.005, audioContext.currentTime);
+
+        const now = audioContext.currentTime;
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(volume, now + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.00001, now + duration);
+
+        harmGain.gain.setValueAtTime(0.0001, now);
+        harmGain.gain.exponentialRampToValueAtTime(volume * 0.35, now + 0.03);
+        harmGain.gain.exponentialRampToValueAtTime(0.00001, now + (duration * 0.6));
+
+        osc.connect(gain);
+        harmOsc.connect(harmGain);
+        gain.connect(audioContext.destination);
+        harmGain.connect(audioContext.destination);
+
+        osc.start(now);
+        harmOsc.start(now);
+        osc.stop(now + duration);
+        harmOsc.stop(now + duration);
+      } catch (e) {
+        console.warn('Audio tone muted', e);
+      }
+    }
+
+    // Cute balloon pop sound synthesizer
+    function playPopSound() {
+      ensureAudioContext();
+      try {
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        const now = audioContext.currentTime;
+
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(500, now);
+        osc.frequency.exponentialRampToValueAtTime(80, now + 0.12);
+
+        gain.gain.setValueAtTime(0.25, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.13);
+      } catch (e) {}
+    }
+
+    // Ambient background loop
+    function scheduleAmbientChimes() {
+      if (!isAmbientActive) return;
+      const note = scale[Math.floor(Math.random() * scale.length)];
+      playTone(note, 2.8, 0.025);
+      synthLoopTimer = setTimeout(scheduleAmbientChimes, 3200 + Math.random() * 2500);
+    }
+
+    function toggleAudio() {
+      isAmbientActive = !isAmbientActive;
+      if (isAmbientActive) {
+        scheduleAmbientChimes();
+        document.getElementById('audio-label').innerText = 'Sur: On';
+        document.getElementById('audio-icon').setAttribute('data-lucide', 'volume-2');
+      } else {
+        clearTimeout(synthLoopTimer);
+        document.getElementById('audio-label').innerText = 'Sur: Off';
+        document.getElementById('audio-icon').setAttribute('data-lucide', 'volume-x');
+      }
+      lucide.createIcons();
+    }
+    document.getElementById('audio-toggle').addEventListener('click', toggleAudio);
+
+    /* ========================================================
+     * "HAPPY BIRTHDAY TO MY DEAR CHAND" MELODY SYNTHESIZER
+     * ======================================================== */
+    const N_C4 = 261.63, N_D4 = 293.66, N_E4 = 329.63, N_F4 = 349.23,
+          N_G4 = 392.00, N_A4 = 440.00, N_B4 = 493.88,
+          N_C5 = 523.25, N_D5 = 587.33, N_E5 = 659.25, N_F5 = 698.46;
+
+    const birthdayScore = [
+      // Hap-py Birth-day to you
+      { f: N_C4, d: 350 }, { f: N_C4, d: 250 }, { f: N_D4, d: 600 }, { f: N_C4, d: 600 }, { f: N_F4, d: 600 }, { f: N_E4, d: 1100 },
+      // Hap-py Birth-day to you
+      { f: N_C4, d: 350 }, { f: N_C4, d: 250 }, { f: N_D4, d: 600 }, { f: N_C4, d: 600 }, { f: N_G4, d: 600 }, { f: N_F4, d: 1100 },
+      // Hap-py Birth-day Mera Chand (Kitten🤟)
+      { f: N_C4, d: 350 }, { f: N_C4, d: 250 }, { f: N_C5, d: 600 }, { f: N_A4, d: 600 }, { f: N_F4, d: 600 }, { f: N_E4, d: 600 }, { f: N_D4, d: 1000 },
+      // Hap-py Birth-day to you!
+      { f: N_A4, d: 350 }, { f: N_A4, d: 250 }, { f: N_F4, d: 600 }, { f: N_G4, d: 600 }, { f: N_F4, d: 1400 }
+    ];
+
+    function stopBirthdayMelody() {
+      melodyTimeouts.forEach(t => clearTimeout(t));
+      melodyTimeouts = [];
+      isPlayingMelody = false;
+      document.getElementById('song-label').innerText = 'Play Chand Melody 🎶';
+      document.getElementById('song-icon').setAttribute('data-lucide', 'music');
+      lucide.createIcons();
+    }
+
+    function startBirthdayMelody() {
+      ensureAudioContext();
+      stopBirthdayMelody();
+      isPlayingMelody = true;
+      document.getElementById('song-label').innerText = 'Sun Rahe Ho Chand Ka Sur ❤️';
+      document.getElementById('song-icon').setAttribute('data-lucide', 'music-2');
+      lucide.createIcons();
+
+      let accumTime = 100;
+      birthdayScore.forEach((note, index) => {
+        const tid = setTimeout(() => {
+          if (!isPlayingMelody) return;
+          playTone(note.f, (note.d / 1000) * 1.5, 0.09, 'sine');
+          
+          // Spawn little heart particles on key notes
+          if (index % 3 === 0) {
+            spawnHeartParticle(window.innerWidth / 2 + (Math.random() * 200 - 100), window.innerHeight / 2);
+          }
+
+          if (index === 14 || index === birthdayScore.length - 1) {
+            confetti({
+              particleCount: 30,
+              spread: 60,
+              origin: { y: 0.6 },
+              colors: ['#ffd166', '#f43f5e', '#ffffff', '#e0c3fc']
+            });
+          }
+
+          if (index === birthdayScore.length - 1) {
+            setTimeout(() => {
+              if (isPlayingMelody) stopBirthdayMelody();
+            }, note.d + 500);
+          }
+        }, accumTime);
+        melodyTimeouts.push(tid);
+        accumTime += note.d + 90;
+      });
+    }
+
+    function toggleBirthdayMelody() {
+      if (isPlayingMelody) {
+        stopBirthdayMelody();
+      } else {
+        startBirthdayMelody();
+      }
+    }
+
+    /* ========================================================
+     * STREAMING_CHUNK:Building 3D Cute Sleeping Moon Cake in Three.js
+     * ======================================================== */
+    let scene, camera, renderer, cakeGroup, leftSliceGroup, rightSliceGroup;
+    let cakeInitialized = false;
+    let isCakeSliced = false;
+
+    function initCake3D() {
+      const container = document.getElementById('cake-3d-container');
+      if (!container || cakeInitialized) return;
+
+      const width = container.clientWidth || 600;
+      const height = container.clientHeight || 400;
+
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+      camera.position.set(0, 4.4, 7.8);
+      camera.lookAt(0, 0.6, 0);
+
+      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      container.appendChild(renderer.domElement);
+
+      // Celestial & Warm Rose Lights
+      const ambientLight = new THREE.AmbientLight(0xfff0f5, 1.3);
+      scene.add(ambientLight);
+
+      const sunLight = new THREE.DirectionalLight(0xffd166, 2.2);
+      sunLight.position.set(5, 10, 5);
+      scene.add(sunLight);
+
+      const moonLight = new THREE.PointLight(0xd8b4fe, 1.8, 15);
+      moonLight.position.set(-5, 4, -3);
+      scene.add(moonLight);
+
+      // Plate / Base Pedestal
+      const plateGeo = new THREE.CylinderGeometry(3.3, 3.4, 0.2, 48);
+      const plateMat = new THREE.MeshStandardMaterial({
+        color: 0x1b132e,
+        metalness: 0.8,
+        roughness: 0.2
+      });
+      const plate = new THREE.Mesh(plateGeo, plateMat);
+      plate.position.y = -0.1;
+      scene.add(plate);
+
+      // Golden Rim with glowing pearls
+      const rimGeo = new THREE.TorusGeometry(3.4, 0.07, 16, 64);
+      const rimMat = new THREE.MeshStandardMaterial({ color: 0xffd166, metalness: 0.9, roughness: 0.15 });
+      const rim = new THREE.Mesh(rimGeo, rimMat);
+      rim.rotation.x = Math.PI / 2;
+      scene.add(rim);
+
+      cakeGroup = new THREE.Group();
+      leftSliceGroup = new THREE.Group();
+      rightSliceGroup = new THREE.Group();
+
+      const cakeRadius = 2.4;
+      const cakeHeight = 1.4;
+
+      // Base Cake Materials: Velvet Midnight Violet with Lavender Pearl Cream
+      const tierMat = new THREE.MeshStandardMaterial({
+        color: 0x271440,
+        roughness: 0.45
+      });
+      const creamMat = new THREE.MeshStandardMaterial({
+        color: 0xfff6ea,
+        roughness: 0.25
+      });
+      const goldTrimMat = new THREE.MeshStandardMaterial({
+        color: 0xffd166,
+        metalness: 0.85,
+        roughness: 0.2
+      });
+      const moonBodyMat = new THREE.MeshStandardMaterial({
+        color: 0xffe89e, // Warm glowing crescent moon butter cream
+        roughness: 0.35,
+        metalness: 0.1
+      });
+      const blushMat = new THREE.MeshStandardMaterial({
+        color: 0xf43f5e, // Cute pink cheeks
+        roughness: 0.6
+      });
+      const eyeMat = new THREE.MeshBasicMaterial({ color: 0x2a163d }); // Sleeping closed eye lashes
+
+      // Half cylinders for slice separation
+      const leftGeo = new THREE.CylinderGeometry(cakeRadius, cakeRadius, cakeHeight, 32, 1, false, Math.PI / 2, Math.PI);
+      const rightGeo = new THREE.CylinderGeometry(cakeRadius, cakeRadius, cakeHeight, 32, 1, false, -Math.PI / 2, Math.PI);
+
+      const leftMesh = new THREE.Mesh(leftGeo, tierMat);
+      const rightMesh = new THREE.Mesh(rightGeo, tierMat);
+      leftMesh.position.y = cakeHeight / 2;
+      rightMesh.position.y = cakeHeight / 2;
+
+      // Frosting Cream Layer on top of base tier
+      const leftCreamGeo = new THREE.CylinderGeometry(cakeRadius * 0.98, cakeRadius * 0.98, 0.08, 32, 1, false, Math.PI / 2, Math.PI);
+      const rightCreamGeo = new THREE.CylinderGeometry(cakeRadius * 0.98, cakeRadius * 0.98, 0.08, 32, 1, false, -Math.PI / 2, Math.PI);
+      const leftCream = new THREE.Mesh(leftCreamGeo, creamMat);
+      const rightCream = new THREE.Mesh(rightCreamGeo, creamMat);
+      leftCream.position.y = cakeHeight + 0.04;
+      rightCream.position.y = cakeHeight + 0.04;
+
+      // CUTE SLEEPING MOON FACE TOPPER (Split into halves so it cuts smoothly!)
+      const moonRadius = 1.35;
+      const leftMoonGeo = new THREE.SphereGeometry(moonRadius, 32, 16, Math.PI / 2, Math.PI);
+      const rightMoonGeo = new THREE.SphereGeometry(moonRadius, 32, 16, -Math.PI / 2, Math.PI);
+
+      const leftMoon = new THREE.Mesh(leftMoonGeo, moonBodyMat);
+      const rightMoon = new THREE.Mesh(rightMoonGeo, moonBodyMat);
+      leftMoon.position.set(0, cakeHeight + moonRadius * 0.85, 0);
+      rightMoon.position.set(0, cakeHeight + moonRadius * 0.85, 0);
+
+      // Cute Cheeks (Blushing Pink)
+      const leftCheekGeo = new THREE.SphereGeometry(0.18, 16, 16);
+      const rightCheekGeo = new THREE.SphereGeometry(0.18, 16, 16);
+      const leftCheek = new THREE.Mesh(leftCheekGeo, blushMat);
+      const rightCheek = new THREE.Mesh(rightCheekGeo, blushMat);
+      leftCheek.position.set(-0.6, cakeHeight + moonRadius * 0.72, moonRadius * 0.82);
+      rightCheek.position.set(0.6, cakeHeight + moonRadius * 0.72, moonRadius * 0.82);
+
+      // Sleeping Curved Eyelashes (cute toruses)
+      const eyeGeo = new THREE.TorusGeometry(0.16, 0.035, 8, 16, Math.PI);
+      const leftEye = new THREE.Mesh(eyeGeo, eyeMat);
+      const rightEye = new THREE.Mesh(eyeGeo, eyeMat);
+      leftEye.position.set(-0.55, cakeHeight + moonRadius * 0.96, moonRadius * 0.86);
+      leftEye.rotation.z = Math.PI; // upside down arch = sleeping eye ^_^
+      rightEye.position.set(0.55, cakeHeight + moonRadius * 0.96, moonRadius * 0.86);
+      rightEye.rotation.z = Math.PI;
+
+      // Cute Little Mouth (Tiny arch)
+      const mouthGeo = new THREE.TorusGeometry(0.1, 0.03, 8, 16, Math.PI * 0.8);
+      const mouth = new THREE.Mesh(mouthGeo, eyeMat);
+      mouth.position.set(0, cakeHeight + moonRadius * 0.65, moonRadius * 0.9);
+      mouth.rotation.z = Math.PI * 1.1;
+
+      // Moon sleeping nightcap or golden star crown
+      const starCrownGeo = new THREE.ConeGeometry(0.2, 0.45, 5);
+      const crown = new THREE.Mesh(starCrownGeo, goldTrimMat);
+      crown.position.set(0.3, cakeHeight + moonRadius * 1.7, 0.1);
+      crown.rotation.z = -0.2;
+      rightSliceGroup.add(crown);
+
+      // Golden Candle on Moon
+      const candleGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.8, 16);
+      const candle = new THREE.Mesh(candleGeo, goldTrimMat);
+      candle.position.set(-0.25, cakeHeight + moonRadius * 1.75, 0);
+      leftSliceGroup.add(candle);
+
+      // Candle Flame
+      const flameGeo = new THREE.SphereGeometry(0.14, 16, 16);
+      const flameMat = new THREE.MeshBasicMaterial({ color: 0xffcc33 });
+      const cakeFlame = new THREE.Mesh(flameGeo, flameMat);
+      cakeFlame.position.set(-0.25, cakeHeight + moonRadius * 2.2, 0);
+      leftSliceGroup.add(cakeFlame);
+
+      // Decorative frosting pearls around cake rim
+      for (let i = 0; i < 18; i++) {
+        const angle = (i / 18) * Math.PI * 2;
+        const px = Math.cos(angle) * (cakeRadius - 0.2);
+        const pz = Math.sin(angle) * (cakeRadius - 0.2);
+        const pearlGeo = new THREE.SphereGeometry(0.12, 16, 16);
+        const pearl = new THREE.Mesh(pearlGeo, (i % 2 === 0) ? goldTrimMat : creamMat);
+        pearl.position.set(px, cakeHeight + 0.1, pz);
+
+        if (angle >= Math.PI / 2 && angle <= (3 * Math.PI) / 2) {
+          leftSliceGroup.add(pearl);
+        } else {
+          rightSliceGroup.add(pearl);
+        }
+      }
+
+      // Assemble Left Half
+      leftSliceGroup.add(leftMesh);
+      leftSliceGroup.add(leftCream);
+      leftSliceGroup.add(leftMoon);
+      leftSliceGroup.add(leftCheek);
+      leftSliceGroup.add(leftEye);
+
+      // Assemble Right Half
+      rightSliceGroup.add(rightMesh);
+      rightSliceGroup.add(rightCream);
+      rightSliceGroup.add(rightMoon);
+      rightSliceGroup.add(rightCheek);
+      rightSliceGroup.add(rightEye);
+      rightSliceGroup.add(mouth);
+
+      cakeGroup.add(leftSliceGroup);
+      cakeGroup.add(rightSliceGroup);
+      scene.add(cakeGroup);
+
+      cakeInitialized = true;
+
+      // Animate Loop
+      function animate() {
+        requestAnimationFrame(animate);
+        if (!isCakeSliced) {
+          cakeGroup.rotation.y += 0.005;
+        } else {
+          leftSliceGroup.position.x = THREE.MathUtils.lerp(leftSliceGroup.position.x, -0.9, 0.06);
+          leftSliceGroup.position.z = THREE.MathUtils.lerp(leftSliceGroup.position.z, -0.3, 0.06);
+          rightSliceGroup.position.x = THREE.MathUtils.lerp(rightSliceGroup.position.x, 0.9, 0.06);
+          rightSliceGroup.position.z = THREE.MathUtils.lerp(rightSliceGroup.position.z, 0.3, 0.06);
+        }
+        renderer.render(scene, camera);
+      }
+      animate();
+    }
+
+    function initOrResizeCake() {
+      if (!cakeInitialized) {
+        initCake3D();
+      } else {
+        const container = document.getElementById('cake-3d-container');
+        if (container && renderer && camera) {
+          const w = container.clientWidth;
+          const h = container.clientHeight;
+          camera.aspect = w / h;
+          camera.updateProjectionMatrix();
+          renderer.setSize(w, h);
+        }
+      }
+      initGestureCutting();
+    }
+
+    function resetCakeScene() {
+      isCakeSliced = false;
+      if (leftSliceGroup && rightSliceGroup) {
+        leftSliceGroup.position.set(0, 0, 0);
+        rightSliceGroup.position.set(0, 0, 0);
+      }
+      document.getElementById('slice-status-badge').innerText = "Ungli se cake par swipe karo to cut 🗡️";
+      document.getElementById('cut-helper-prompt').style.opacity = '1';
+      document.getElementById('slice-success-banner').classList.add('opacity-0');
+      playTone(440, 0.8, 0.04);
+    }
+
+    /* ========================================================
+     * STREAMING_CHUNK:Hand Gesture Swipe to Cut Cake with glowing streak & flying hearts
+     * ======================================================== */
+    let gestureCanvas, gCtx;
+    let isDrawing = false;
+    let cutPoints = [];
+
+    function initGestureCutting() {
+      gestureCanvas = document.getElementById('gesture-canvas');
+      if (!gestureCanvas) return;
+      gCtx = gestureCanvas.getContext('2d');
+      gestureCanvas.width = gestureCanvas.clientWidth;
+      gestureCanvas.height = gestureCanvas.clientHeight;
+
+      gestureCanvas.addEventListener('mousedown', startCut);
+      window.addEventListener('mousemove', moveCut);
+      window.addEventListener('mouseup', endCut);
+
+      gestureCanvas.addEventListener('touchstart', (e) => {
+        if (e.touches.length > 0) {
+          const touch = e.touches[0];
+          startCut(touch);
+        }
+      }, { passive: false });
+
+      gestureCanvas.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          const touch = e.touches[0];
+          moveCut(touch);
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+      gestureCanvas.addEventListener('touchend', endCut);
+    }
+
+    function getCoords(e) {
+      const rect = gestureCanvas.getBoundingClientRect();
+      return {
+        x: (e.clientX || e.pageX) - rect.left,
+        y: (e.clientY || e.pageY) - rect.top
+      };
+    }
+
+    function startCut(e) {
+      if (isCakeSliced) return;
+      isDrawing = true;
+      cutPoints = [getCoords(e)];
+    }
+
+    function moveCut(e) {
+      if (!isDrawing || isCakeSliced) return;
+      const pt = getCoords(e);
+      cutPoints.push(pt);
+
+      // Draw sparkling blade trail with rose-gold light
+      gCtx.clearRect(0, 0, gestureCanvas.width, gestureCanvas.height);
+      gCtx.beginPath();
+      gCtx.strokeStyle = '#ffd166';
+      gCtx.lineWidth = 4;
+      gCtx.lineCap = 'round';
+      gCtx.shadowColor = '#f43f5e';
+      gCtx.shadowBlur = 14;
+
+      for (let i = 0; i < cutPoints.length - 1; i++) {
+        gCtx.moveTo(cutPoints[i].x, cutPoints[i].y);
+        gCtx.lineTo(cutPoints[i + 1].x, cutPoints[i + 1].y);
+      }
+      gCtx.stroke();
+
+      // Check swipe threshold
+      if (cutPoints.length > 5) {
+        const first = cutPoints[0];
+        const last = pt;
+        const dx = Math.abs(last.x - first.x);
+        const dy = Math.abs(last.y - first.y);
+
+        if (dx > gestureCanvas.width * 0.28 || (dx * dx + dy * dy) > 28000) {
+          triggerCakeCutSuccess();
+          endCut();
+        }
+      }
+    }
+
+    function endCut() {
+      isDrawing = false;
+      cutPoints = [];
+      setTimeout(() => {
+        if (gCtx && gestureCanvas) {
+          gCtx.clearRect(0, 0, gestureCanvas.width, gestureCanvas.height);
+        }
+      }, 250);
+    }
+
+    function triggerCakeCutSuccess() {
+      if (isCakeSliced) return;
+      isCakeSliced = true;
+
+      // Celebrate audio chords
+      playTone(523.25, 2.5, 0.08);
+      setTimeout(() => playTone(659.25, 2.5, 0.08), 120);
+      setTimeout(() => playTone(783.99, 2.8, 0.08), 240);
+
+      // Confetti & Flying Hearts Explosion
+      confetti({
+        particleCount: 160,
+        spread: 90,
+        origin: { y: 0.55 },
+        colors: ['#ffd166', '#f43f5e', '#ffffff', '#e0c3fc']
+      });
+
+      for (let i = 0; i < 8; i++) {
+        setTimeout(() => {
+          spawnHeartParticle(window.innerWidth / 2 + (Math.random() * 240 - 120), window.innerHeight * 0.45);
+        }, i * 100);
+      }
+
+      // Update UI feedback
+      document.getElementById('slice-status-badge').innerText = "Cake Successfully Cut! Happy Birthday Meri Jaan ❤️✨";
+      document.getElementById('cut-helper-prompt').style.opacity = '0';
+      document.getElementById('slice-success-banner').classList.remove('opacity-0');
+
+      if (!isPlayingMelody) {
+        setTimeout(startBirthdayMelody, 500);
+      }
+    }
+
+    /* ========================================================
+     * STREAMING_CHUNK:Balloon Bursting Mini-Activity with Romantic Hinglish Wishes
+     * ======================================================== */
+    let poppedBalloonsCount = 0;
+
+    function renderBalloons() {
+      const arena = document.getElementById('balloons-arena');
+      if (!arena) return;
+
+      arena.innerHTML = CONFIG.balloons.map((b, i) => `
+        <div id="balloon-${b.id}" onclick="popBalloon(${b.id})" class="cursor-pointer group flex flex-col items-center select-none transform transition-transform duration-300 hover:scale-110 active:scale-95 animate-balloon-bounce" style="animation-delay: ${i * 0.6}s;">
+          <div class="relative w-14 h-18 sm:w-16 sm:h-20 rounded-full bg-gradient-to-tr ${b.color} shadow-[0_0_20px_rgba(244,63,94,0.35)] flex items-center justify-center border border-white/40">
+            <!-- Balloon shine -->
+            <div class="absolute top-2 left-2 w-3.5 h-6 rounded-full bg-white/40 blur-[1px]"></div>
+            <i data-lucide="${b.icon}" class="w-6 h-6 text-midnight/80 drop-shadow-md"></i>
+          </div>
+          <div class="w-2 h-1.5 bg-amber-400 rounded-b mt-[-1px]"></div>
+          <div class="w-0.5 h-8 bg-white/20"></div>
+          <span class="text-[10px] text-slate-300 mt-1 uppercase tracking-wider font-light group-hover:text-solar-gold">${b.label}</span>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function popBalloon(id) {
+      const balloon = CONFIG.balloons.find(b => b.id === id);
+      const el = document.getElementById(`balloon-${id}`);
+      if (!el || el.dataset.popped) return;
+      el.dataset.popped = "true";
+
+      playPopSound();
+
+      // Show balloon wish message in Hinglish
+      const msgBox = document.getElementById('balloon-message-box');
+      const msgText = document.getElementById('balloon-message-text');
+      if (balloon && msgBox && msgText) {
+        msgText.innerText = `"${balloon.wish}"`;
+        msgBox.classList.remove('hidden');
+      }
+
+      // Confetti burst from balloon position
+      const rect = el.getBoundingClientRect();
+      const originX = (rect.left + rect.width / 2) / window.innerWidth;
+      const originY = (rect.top + rect.height / 2) / window.innerHeight;
+
+      confetti({
+        particleCount: 50,
+        spread: 60,
+        origin: { x: originX, y: originY },
+        colors: ['#ffd166', '#f43f5e', '#ffffff', '#e0c3fc']
+      });
+
+      spawnHeartParticle(rect.left + rect.width / 2, rect.top);
+
+      el.style.transform = "scale(1.4)";
+      el.style.opacity = "0";
+      setTimeout(() => {
+        el.style.visibility = "hidden";
+      }, 200);
+
+      poppedBalloonsCount++;
+      document.getElementById('balloon-pop-counter').innerText = poppedBalloonsCount;
+
+      if (poppedBalloonsCount >= CONFIG.balloons.length) {
+        document.getElementById('all-balloons-popped-msg').classList.remove('hidden');
+        confetti({
+          particleCount: 200,
+          spread: 100,
+          origin: { y: 0.6 }
+        });
+      }
+    }
+
+    /* ========================================================
+     * STREAMING_CHUNK:Floating Heart Particles Spawner
+     * ======================================================== */
+    function spawnHeartParticle(x, y) {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart-particle text-rose-400';
+      heart.style.left = `${x}px`;
+      heart.style.top = `${y}px`;
+      heart.innerHTML = '❤️';
+      document.body.appendChild(heart);
+      setTimeout(() => {
+        heart.remove();
+      }, 2400);
+    }
+
+    /* ========================================================
+     * STREAMING_CHUNK:Interactive Celestial Starfield Background
+     * ======================================================== */
+    const canvas = document.getElementById('celestial-canvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resizeStarfield() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initStarfield();
+    }
+
+    function initStarfield() {
+      stars = [];
+      const totalStars = Math.floor((canvas.width * canvas.height) / 5000);
+      for (let i = 0; i < totalStars; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 1.5 + 0.3,
+          alpha: Math.random() * 0.8 + 0.2,
+          speed: Math.random() * 0.015 + 0.005,
+          dir: Math.random() > 0.5 ? 1 : -1
+        });
+      }
+    }
+
+    function renderStarfield() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let s of stars) {
+        s.alpha += s.speed * s.dir;
+        if (s.alpha >= 0.95 || s.alpha <= 0.15) s.dir *= -1;
+
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 230, 200, ${s.alpha})`;
+        ctx.fill();
+      }
+      requestAnimationFrame(renderStarfield);
+    }
+    window.addEventListener('resize', resizeStarfield);
+
+    /* ========================================================
+     * STREAMING_CHUNK:Populating content data, cards, and polaroid gallery
+     * ======================================================== */
+    function populatePersonalData() {
+      document.getElementById('gateway-name').innerText = CONFIG.recipientName;
+      document.getElementById('footer-recipient-name').innerText = CONFIG.recipientName;
+      document.getElementById('letter-greeting').innerText = CONFIG.letter.greeting;
+      document.getElementById('letter-closing-signature').innerText = CONFIG.letter.signature;
+
+      const letterBox = document.getElementById('letter-content');
+      letterBox.innerHTML = CONFIG.letter.paragraphs.map(p => `<p>${p}</p>`).join('');
+
+      // Populate Lunar 3D Flip Cards in Hinglish
+      const lunarGrid = document.getElementById('lunar-cards-grid');
+      lunarGrid.innerHTML = CONFIG.lunarThoughts.map((t) => `
+        <div class="perspective-1000 h-64 sm:h-72 cursor-pointer group" onclick="toggleLunarFlip(this)">
+          <div class="card-inner relative w-full h-full transition-transform duration-700 transform-style-preserve-3d">
+            
+            <div class="absolute inset-0 w-full h-full celestial-glass-lunar rounded-3xl p-7 flex flex-col justify-between backface-hidden border border-indigo-400/20 group-hover:border-rose-400/50 shadow-lg">
+              <div class="flex items-center justify-between">
+                <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-indigo-200">
+                  <i data-lucide="${t.icon}" class="w-6 h-6"></i>
+                </div>
+                <span class="text-xs uppercase tracking-widest text-rose-300 font-semibold">Chand Raaz #0${t.id}</span>
+              </div>
+              <div>
+                <h4 class="font-serif text-2xl text-white mb-1.5">${t.title}</h4>
+                <p class="text-xs text-indigo-200/80 font-light tracking-wide">${t.teaser}</p>
+              </div>
+              <div class="flex items-center space-x-2 text-[11px] uppercase tracking-wider text-slate-400 font-medium group-hover:text-rose-300 transition-colors">
+                <span>Tap karke secret padho</span>
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+              </div>
+            </div>
+
+            <div class="absolute inset-0 w-full h-full rounded-3xl p-7 flex flex-col justify-between backface-hidden rotate-y-180 bg-gradient-to-br from-[#1b0d2e] to-[#090515] border border-rose-400/40 shadow-2xl">
+              <div>
+                <div class="flex items-center space-x-2 text-rose-300 mb-3">
+                  <i data-lucide="heart" class="w-4 h-4 fill-rose-400"></i>
+                  <span class="text-xs uppercase tracking-widest font-semibold">${t.title}</span>
+                </div>
+                <p class="text-slate-200 text-sm font-light leading-relaxed">
+                  ${t.detail}
+                </p>
+              </div>
+              <div class="pt-3 border-t border-white/10 flex justify-between items-center text-[11px] text-rose-300/80">
+                <span class="font-handwritten text-lg text-solar-champagne">Sirf Tumhare Liye ❤️</span>
+                <span>Tap wapas</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      `).join('');
+
+      // Populate Polaroids
+      const polaroidGrid = document.getElementById('memory-polaroids-grid');
+      polaroidGrid.innerHTML = CONFIG.photos.map((item, idx) => {
+        const tilts = ['-rotate-2', 'rotate-1', 'rotate-3'];
+        const tilt = tilts[idx % tilts.length];
+        return `
+          <div class="celestial-glass p-4 pb-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:rotate-0 cursor-pointer shadow-xl ${tilt} group" onclick="openLightbox('${item.url}', '${item.caption}')">
+            <div class="overflow-hidden rounded-xl h-64 w-full relative mb-4">
+              <img src="${item.url}" alt="${item.caption}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onerror="this.src='https://placehold.co/600x600/100a20/ffd166?text=Mera+Pyaara+Chand'">
+              <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-[10px] uppercase tracking-widest text-solar-champagne font-medium">
+                ${item.tag}
+              </div>
+            </div>
+            <p class="font-handwritten text-2xl text-center text-solar-champagne tracking-wide">${item.caption}</p>
+          </div>
+        `;
+      }).join('');
+
+      renderBalloons();
+      lucide.createIcons();
+    }
+
+    function toggleLunarFlip(card) {
+      const inner = card.querySelector('.card-inner');
+      inner.classList.toggle('rotate-y-180');
+      playTone(523.25, 1.2, 0.03);
+    }
+
+    /* ========================================================
+     * STREAMING_CHUNK:Solar Mode Toggle, Wish Extinguishing, & Affirmations
+     * ======================================================== */
+    function setSolarMode(isWithHer) {
+      const box = document.getElementById('solar-contrast-box');
+      const badge = document.getElementById('solar-badge');
+      const title = document.getElementById('solar-title');
+      const desc = document.getElementById('solar-desc');
+      const val1 = document.getElementById('solar-val-1');
+      const lbl1 = document.getElementById('solar-lbl-1');
+      const val2 = document.getElementById('solar-val-2');
+      const lbl2 = document.getElementById('solar-lbl-2');
+      const icon = document.getElementById('solar-main-icon');
+      const quote = document.getElementById('solar-visual-quote');
+      const btnWithout = document.getElementById('toggle-without');
+      const btnWith = document.getElementById('toggle-with');
+
+      if (isWithHer) {
+        btnWith.className = "px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 bg-gradient-to-r from-solar-gold via-amber-400 to-rose-500 text-midnight shadow-lg";
+        btnWithout.className = "px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white";
+
+        box.className = "relative rounded-3xl overflow-hidden transition-all duration-700 p-8 sm:p-12 border border-solar-gold/40 celestial-glass-solar shadow-[0_0_50px_rgba(255,209,102,0.18)] mb-16";
+        badge.innerText = "State: Har Lamha Roshan Aur Rangeen ✨";
+        badge.className = "inline-block px-3 py-1 rounded-full text-[10px] uppercase tracking-widest font-semibold bg-solar-gold/20 text-solar-champagne border border-solar-gold/40 mb-4 transition-all";
+        title.innerText = "Tum sath ho to har aam din bhi ek festival ban jata hai!";
+        desc.innerText = "Tumhari ek hasi mere saare stress ko gayab kar deti hai. Chai peena bhi romantic lagta hai, lamba rasta bhi chota lagta hai, aur dil har waqt khush rehta hai sirf isliye kyunki tum meri zindagi me ho.";
+        val1.innerText = "1000%";
+        lbl1.innerText = "Hasi & Khushi";
+        val2.innerText = "Infinite ❤️";
+        lbl2.innerText = "Pyaar Aur Sukoon";
+        quote.innerText = '"Suraj to sirf aasmaan ko chamkata hai, par tum meri poori rooh ko roshan karti ho."';
+        icon.setAttribute('data-lucide', 'heart');
+
+        playTone(587.33, 2.0, 0.05);
+      } else {
+        btnWithout.className = "px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 bg-slate-800 text-slate-200 shadow-md";
+        btnWith.className = "px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 text-slate-400 hover:text-white";
+
+        box.className = "relative rounded-3xl overflow-hidden transition-all duration-700 p-8 sm:p-12 border border-slate-700 bg-slate-900/90 shadow-none grayscale mb-16";
+        badge.innerText = "State: Berang & Thanda Aasmaan";
+        badge.className = "inline-block px-3 py-1 rounded-full text-[10px] uppercase tracking-widest font-semibold bg-slate-800 text-slate-400 border border-slate-700 mb-4 transition-all";
+        title.innerText = "Tumhare bina sab kuch soona aur be-jaan lagta hai...";
+        desc.innerText = "Din guzar jate hain par koi maza nahi aata. Har cheez adhoori lagti hai aur dil bas yahi intezaar karta rehta hai ki kab tumse baat hogi ya kab tumhara chehra dekhne ko milega.";
+        val1.innerText = "0%";
+        lbl1.innerText = "Sukoon";
+        val2.innerText = "Intezaar";
+        lbl2.innerText = "Missing You Badly";
+        quote.innerText = '"Jese bina chand ke raat bilkul andheri hoti hai, waise hi tumhare bina main adhoora hoon."';
+        icon.setAttribute('data-lucide', 'cloud-rain');
+
+        playTone(261.63, 1.2, 0.03);
+      }
+      lucide.createIcons();
+    }
+
+    let flameBlown = false;
+    function extinguishFlame() {
+      if (flameBlown) return;
+      flameBlown = true;
+
+      const flame = document.getElementById('interactive-flame');
+      const smoke = document.getElementById('candle-smoke');
+      const instruction = document.getElementById('flame-instruction');
+      const letter = document.getElementById('unlocked-letter');
+
+      flame.classList.add('opacity-0', 'scale-50');
+      smoke.classList.remove('hidden');
+      instruction.innerText = "Dua Seedha Taaron Tak Pahunch Gayi ✨❤️";
+      instruction.className = "text-xs uppercase tracking-widest text-rose-400 mt-6 font-semibold animate-pulse";
+
+      playTone(523.25, 3.0, 0.08);
+      setTimeout(() => playTone(659.25, 3.0, 0.08), 200);
+      setTimeout(() => playTone(783.99, 3.5, 0.08), 400);
+
+      confetti({
+        particleCount: 220,
+        spread: 90,
+        origin: { y: 0.7 },
+        colors: ['#ffd166', '#f43f5e', '#fef08a', '#e0c3fc', '#ffffff']
+      });
+
+      for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+          spawnHeartParticle(window.innerWidth / 2 + (Math.random() * 200 - 100), window.innerHeight * 0.5);
+        }, i * 150);
+      }
+
+      setTimeout(() => {
+        letter.classList.remove('hidden');
+        letter.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 1000);
+    }
+
+    let lastAffirmationIdx = -1;
+    function generateAffirmation() {
+      let nextIdx;
+      do {
+        nextIdx = Math.floor(Math.random() * CONFIG.affirmations.length);
+      } while (nextIdx === lastAffirmationIdx && CONFIG.affirmations.length > 1);
+
+      lastAffirmationIdx = nextIdx;
+      const display = document.getElementById('affirmation-display');
+
+      display.style.opacity = '0';
+      setTimeout(() => {
+        display.innerText = `"${CONFIG.affirmations[nextIdx]}"`;
+        display.style.opacity = '1';
+      }, 200);
+
+      confetti({
+        particleCount: 20,
+        spread: 45,
+        origin: { y: 0.7 },
+        colors: ['#ffd166', '#f43f5e', '#ffffff']
+      });
+
+      spawnHeartParticle(window.innerWidth / 2, window.innerHeight * 0.6);
+      playTone(659.25, 1.5, 0.04);
+    }
+
+    function openLightbox(url, caption) {
+      const modal = document.getElementById('photo-modal');
+      const img = document.getElementById('modal-image');
+      const cap = document.getElementById('modal-caption');
+      img.src = url;
+      cap.innerText = caption;
+      modal.classList.remove('hidden');
+    }
+
+    function closeLightbox() {
+      document.getElementById('photo-modal').classList.add('hidden');
+    }
+
+    /* ========================================================
+     * STREAMING_CHUNK:Window Load Event Listener
+     * ======================================================== */
+    window.addEventListener('load', () => {
+      populatePersonalData();
+      resizeStarfield();
+      renderStarfield();
+      scheduleAmbientChimes();
+      navigateToPage('gateway');
+    });
+  </script>
+</body>
+</html>
